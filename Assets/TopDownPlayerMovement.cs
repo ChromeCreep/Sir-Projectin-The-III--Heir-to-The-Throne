@@ -10,7 +10,6 @@ public class TopDownPlayerMovement : MonoBehaviour
     [SerializeField] private float slowedSpeed;
     private Rigidbody2D rb;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -18,7 +17,6 @@ public class TopDownPlayerMovement : MonoBehaviour
         originalSpeed = moveSpeed;
     }
 
-    // Update is called once per frame
     void Update()
     {
         //Basic Movement Logic
@@ -37,5 +35,11 @@ public class TopDownPlayerMovement : MonoBehaviour
         }
     }
 
- 
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            Destroy(gameObject);
+        }
+    }
 }
